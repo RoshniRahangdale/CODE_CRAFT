@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Social Media Platform</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 16px;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+
+        /* Main container */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 60px; /* To prevent overlap with the fixed navbar */
+        }
+
+        /* Sidebar - Profile */
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        /* Social Media Feed */
+        .feed {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .feed .post {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feed .post h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+
+        .feed .post p {
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Messages</a>
+        <a href="#">Notifications</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Profile</h2>
+            <ul>
+                <li>Followers: 1234</li>
+                <li>Following: 567</li>
+                <li>Posts: 42</li>
+            </ul>
+        </div>
+
+        <!-- Feed -->
+        <div class="feed" id="feed">
+            <div class="post">
+                <h3>Post Title 1</h3>
+                <p>This is the content of the first post. Swipe left or right to navigate!</p>
+            </div>
+            <div class="post">
+                <h3>Post Title 2</h3>
+                <p>This is the content of the second post. Swipe gestures are enabled on mobile devices.</p>
+            </div>
+            <div class="post">
+                <h3>Post Title 3</h3>
+                <p>This is the content of the third post. Navigate by swiping!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Social Media Platform</p>
+    </footer>
+
+    <!-- JavaScript for Swipe Gestures -->
+    <script>
+        let startX, endX;
+        const feed = document.getElementById("feed");
+
+        feed.addEventListener("touchstart", function(event) {
+            startX = event.touches[0].clientX;
+        });
+
+        feed.addEventListener("touchend", function(event) {
+            endX = event.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum swipe distance in pixels
+            if (startX - endX > swipeThreshold) {
+                alert("Swiped Left! Navigating to next section...");
+            } else if (endX - startX > swipeThreshold) {
+                alert("Swiped Right! Navigating to previous section...");
+            }
+        }
+    </script>
+</body>
+</html>
